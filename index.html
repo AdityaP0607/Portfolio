@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adi — Interaction Designer Desk</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Kalam:wght@400;700&family=Space+Grotesk:wght@400;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-bg"></div>
+    
+    <div class="page-loader__inner">
+      <div class="loader-logo">
+        <div class="loader-logo__ring"></div>
+        <div class="loader-logo__dot"></div>
+        <svg class="loader-logo__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path class="loader-path" d="M10,50 Q50,10 90,50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path class="loader-path" d="M10,50 Q50,90 90,50" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="loader-brand">
+        <span class="loader-brand__text">Aditya DESK</span>
+        <div class="loader-cursor"></div>
+      </div>
+
+      <div class="loader-steps">
+        <div class="loader-step">
+          <div class="loader-step__indicator"></div>
+          <span class="loader-step__text">Loading workspace</span>
+        </div>
+        <div class="loader-step">
+          <div class="loader-step__indicator"></div>
+          <span class="loader-step__text">Arranging elements</span>
+        </div>
+        <div class="loader-step">
+          <div class="loader-step__indicator"></div>
+          <span class="loader-step__text">Preparing interactions</span>
+        </div>
+      </div>
+
+      <div class="loader-progress">
+        <div class="loader-progress__bar"></div>
+      </div>
+
+      <p class="page-loader__message">Preparing your interactive workspace...</p>
+    </div>
+
+    <div class="loader-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+  </div>
+
+  <!-- Main Desk Canvas -->
+  <main class="desk-section">
+    <div class="desk-stage">
+      <div class="desk-stage__canvas">
+        <img src="desk-scene-full.png" alt="Interactive Workspace Desk" class="desk-stage__bg" />
+      </div>
+
+      <button class="hotspot" data-id="computer" aria-label="Open Selected Work">
+        <div class="handwritten-bubble">
+          Selected Work 💻
+          <small>Mac OS Dashboard ➔</small>
+        </div>
+      </button>
+
+      <button class="hotspot" data-id="book" aria-label="Open Journal">
+        <div class="handwritten-bubble">
+          Journaling 📓
+          <small>Flip through Key Learnings ➔</small>
+        </div>
+      </button>
+
+      <button class="hotspot" data-id="sticky" aria-label="Read Quick Notes">
+        <div class="handwritten-bubble">
+          Quick Note 📝
+          <small>Skills & Philosophy ➔</small>
+        </div>
+      </button>
+
+      <button class="hotspot" data-id="redbook" aria-label="Open Experiences & Credentials">
+        <div class="handwritten-bubble">
+          Experiences 📁
+          <small>Insights & Projects Narratives ➔</small>
+        </div>
+      </button>
+
+      <button class="hotspot" data-id="phone" aria-label="Open Mobile Bio">
+        <div class="handwritten-bubble">
+          About Me 📱
+          <small>Mobile Bio & Profile ➔</small>
+        </div>
+      </button>
+
+      <button class="hotspot" data-id="mug" aria-label="Open Contact Overlay">
+        <div class="handwritten-bubble">
+          Connect With Me ☕
+          <small>Let's grab coffee! ➔</small>
+        </div>
+      </button>
+
+    </div>
+  </main>
+
+  <!-- Overlay Container -->
+  <div class="overlay" id="overlay" aria-hidden="true">
+    <div class="overlay__backdrop" id="overlayBackdrop"></div>
+
+    <!-- PANEL 1: MACBOOK DESKTOP MODAL -->
+    <div class="panel panel--desktop" data-panel="computer">
+      <div class="mac-window">
+        <!-- Authentic macOS Top Menu Bar -->
+        <div class="mac-menubar">
+          <div class="mac-menubar__left">
+            <span class="mac-apple-logo"></span>
+            <span class="mac-menu-item mac-menu-item--bold">Finder</span>
+            <span class="mac-menu-item">File</span>
+            <span class="mac-menu-item">Edit</span>
+            <span class="mac-menu-item">View</span>
+            <span class="mac-menu-item">Go</span>
+            <span class="mac-menu-item">Window</span>
+            <span class="mac-menu-item">Help</span>
+          </div>
+          <div class="mac-menubar__right">
+            <span class="mac-status-icon">🔋 100%</span>
+            <span class="mac-status-icon">🔍</span>
+            <span class="mac-status-icon">🕹️</span>
+            <span class="mac-date-time" id="macDateTime">Mon Aug 3 11:14 PM</span>
+            <button class="mac-close-btn" data-close>Close ✕</button>
+          </div>
+        </div>
+
+        <!-- macOS Wallpaper Desktop Body -->
+        <div class="mac-desktop">
+          <div class="mac-folders-grid">
+            <button class="mac-folder" data-folder="projects">
+              <div class="mac-folder__icon">
+                <div class="mac-folder__tab"></div>
+              </div>
+              <span class="mac-folder__label">01_Foundation Work</span>
+            </button>
+            <button class="mac-folder" data-folder="experiments">
+              <div class="mac-folder__icon">
+                <div class="mac-folder__tab"></div>
+              </div>
+              <span class="mac-folder__label">02_Interaction Work</span>
+            </button>
+            <button class="mac-folder" data-folder="casestudies">
+              <div class="mac-folder__icon">
+                <div class="mac-folder__tab"></div>
+              </div>
+              <span class="mac-folder__label">03_Graphic Design-Minor</span>
+            </button>
+            <button class="mac-folder" data-folder="macboard">
+              <div class="mac-folder__icon">
+                <div class="mac-folder__tab"></div>
+              </div>
+              <span class="mac-folder__label">04_Gig Work</span>
+            </button>
+          </div>
+
+          <!-- Finder Window (Opens when folder is clicked) -->
+          <div class="finder-window" id="finderWindow">
+            <div class="finder-window__bar">
+              <div class="finder-window__controls">
+                <span class="finder-dot finder-dot--red" id="finderClose"></span>
+                <span class="finder-dot finder-dot--yellow"></span>
+                <span class="finder-dot finder-dot--green"></span>
+              </div>
+              <span class="finder-window__title" id="finderTitle">01_Foundation Work</span>
+              <div class="finder-window__nav">
+                <button class="finder-nav__btn" id="finderPrev" aria-label="Previous project">←</button>
+                <span class="finder-window__counter" id="finderCounter">1 / 20</span>
+                <button class="finder-nav__btn" id="finderNext" aria-label="Next project">→</button>
+              </div>
+            </div>
+            <div class="finder-window__grid" id="finderGrid">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- macOS Realistic Dock -->
+          <div class="mac-dock">
+            <div class="mac-dock__icon mac-dock__icon--finder" title="Finder">
+              <svg viewBox="0 0 64 64"><rect x="4" y="4" width="56" height="56" rx="14" fill="#3B82F6"/><path d="M 20,16 Q 32,24 32,32 Q 32,40 20,48 M 44,16 Q 32,24 32,32 Q 32,40 44,48" stroke="#FFF" stroke-width="4" fill="none"/><circle cx="24" cy="24" r="3" fill="#FFF"/><circle cx="40" cy="24" r="3" fill="#FFF"/><path d="M 24,40 Q 32,46 40,40" stroke="#FFF" stroke-width="4" fill="none"/></svg>
+            </div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #10B981, #059669);" title="Calculator">🧮</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #3B82F6, #1D4ED8);" title="Safari">🧭</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #22C55E, #16A34A);" title="Messages">💬</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #06B6D4, #0891B2);" title="Mail">✉️</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #EC4899, #DB2777);" title="Photos">🌸</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #8B5CF6, #6D28D9);" title="FaceTime">📹</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #EF4444, #B91C1C);" title="Music">🎵</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #F97316, #EA580C);" title="Keynote">📊</div>
+            <div class="mac-dock__icon" style="background: linear-gradient(135deg, #64748B, #334155);" title="Settings">⚙️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: PROCESS JOURNAL -->
+    <div class="panel panel--notebook" data-panel="book">
+      <button class="panel__close" data-close>Close ✕</button>
+      <div class="notebook-wrapper">
+        <div class="notebook-rings">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        
+        <div class="notebook-3d-stage">
+          <div class="notebook-spread is-active">
+            <!-- PAGE 1 (LEFT) -->
+            <div class="notebook-page-side page-left">
+              <div class="page-meta">
+                <span>VOL. 2026 // DESIGN PROCESS</span>
+                <span>PG. 01</span>
+              </div>
+              
+              <h2 class="pencil-title">Key Learnings <span class="rough-star">★</span></h2>
+              
+              <div class="journal-content-messy">
+                <ul class="pencil-list">
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span class="text-underline">Observation</span>
+                    <div class="sketch-inline sketch-eye">
+                      <svg viewBox="0 0 120 35">
+                        <path d="M 10,18 Q 60,2 110,18 Q 60,34 10,18 Z" class="pencil-stroke"/>
+                        <circle cx="60" cy="18" r="8" class="pencil-stroke-thin"/>
+                        <circle cx="60" cy="18" r="3" class="pencil-fill"/>
+                        <path d="M 15,30 L 105,30" class="pencil-stroke-thin" stroke-dasharray="4,4"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Understanding human psychology</span>
+                    <span class="sketch-annotation">mental models!</span>
+                    <div class="sketch-inline sketch-brain">
+                      <svg viewBox="0 0 100 40">
+                        <path d="M 20,25 C 10,20 10,10 25,8 C 25,2 45,2 55,10 C 65,2 85,2 85,10 C 98,10 98,22 88,28 C 93,35 80,38 70,32 C 60,38 45,38 35,32 C 25,36 15,30 20,25 Z" class="pencil-stroke"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span><del class="cross-out">Assumption</del> Problem identification</span>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Putting the customer viewpoint into consideration</span>
+                    <div class="sketch-inline sketch-perspective">
+                      <svg viewBox="0 0 130 35">
+                        <circle cx="20" cy="15" r="7" class="pencil-stroke"/>
+                        <path d="M 8,30 Q 20,22 32,30" class="pencil-stroke"/>
+                        <path d="M 40,18 L 65,18 M 58,14 L 66,18 L 58,22" class="pencil-stroke-thin"/>
+                        <rect x="75" y="8" width="30" height="20" rx="3" class="pencil-stroke"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Even the simplest solutions can make a <span class="highlight-pencil">huge difference</span></span>
+                    <div class="sketch-inline sketch-bulb">
+                      <svg viewBox="0 0 35 45">
+                        <path d="M 10,20 C 5,12 12,2 18,2 C 25,2 32,12 27,20 C 24,23 22,26 22,30 L 14,30 C 14,26 12,23 10,20 Z" class="pencil-stroke"/>
+                        <path d="M 14,34 L 22,34 M 15,38 L 21,38" class="pencil-stroke"/>
+                        <path d="M 4,6 L 8,9 M 31,6 L 27,9 M 18,0 L 18,3" class="pencil-stroke-thin"/>
+                      </svg>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="margin-pencil-note">
+                <span>* iterate iterate iterate!</span>
+              </div>
+              <div class="pencil-stain"></div>
+            </div>
+
+            <!-- PAGE 2 (RIGHT) -->
+            <div class="notebook-page-side page-right">
+              <div class="page-meta">
+                <span>PG. 02</span>
+                <span>SKETCHBOOK NOTES</span>
+              </div>
+              
+              <h2 class="pencil-title">Key Learnings</h2>
+              
+              <div class="journal-content-messy">
+                <ul class="pencil-list">
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Decision making ability</span>
+                    <div class="sketch-inline sketch-scale">
+                      <svg viewBox="0 0 90 35">
+                        <path d="M 45,30 L 45,8 M 18,8 L 72,8 M 45,8 L 38,4 L 52,4 Z" class="pencil-stroke"/>
+                        <path d="M 18,8 L 10,20 M 18,8 L 26,20 M 72,8 L 64,20 M 72,8 L 80,20" class="pencil-stroke-thin"/>
+                        <path d="M 8,20 Q 18,24 28,20 Z M 62,20 Q 72,24 82,20 Z" class="pencil-stroke"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Presentation matters <span class="rough-arrow">⤳ critical!</span></span>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Trusting the process is key rather than jumping to outcomes</span>
+                    <div class="sketch-inline sketch-target">
+                      <svg viewBox="0 0 100 35">
+                        <path d="M 10,28 C 22,8 38,30 50,15" class="pencil-stroke-thin" stroke-dasharray="3,3"/>
+                        <path d="M 45,15 L 52,15 L 50,20" class="pencil-stroke-thin"/>
+                        <circle cx="75" cy="18" r="12" class="pencil-stroke"/>
+                        <circle cx="75" cy="18" r="6" class="pencil-stroke-thin"/>
+                        <circle cx="75" cy="18" r="2" class="pencil-fill"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Feedback prevents frustration</span>
+                    <span class="pencil-scribble-box">looping back</span>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>People don’t want to think, <span class="text-underline">guide the eye</span></span>
+                    <div class="sketch-inline sketch-arrow-path">
+                      <svg viewBox="0 0 120 25">
+                        <path d="M 10,12 Q 38,4 68,16 T 108,10" class="pencil-stroke"/>
+                        <path d="M 98,6 L 110,10 L 102,16" class="pencil-stroke"/>
+                      </svg>
+                    </div>
+                  </li>
+
+                  <li>
+                    <span class="bullet-pencil">•</span>
+                    <span>Simple to use means complex to build</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="doodle-corner">
+                <svg viewBox="0 0 50 50">
+                  <path d="M 5,5 L 45,5 L 45,45 L 5,45 Z" class="pencil-stroke-thin"/>
+                  <path d="M 8,8 L 42,42 M 42,8 L 8,42" class="pencil-stroke-thin"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: STICKY NOTE -->
+    <div class="panel panel--note" data-panel="sticky">
+      <button class="panel__close" data-close>Close ✕</button>
+      <div class="legal-pad">
+        <div class="legal-pad__tear"></div>
+        <div class="legal-pad__margin"></div>
+        <div class="legal-pad__body">
+          <p class="legal-pad__text">Design Philosophy & Skills:</p>
+          <ul class="skill-list">
+            <li>✦ Dedicated &amp; Disciplined</li>
+            <li>✦ Intellectually Curious</li>
+            <li>✦ Highly Adaptable</li>
+            <li>✦ High Project Capacity</li>
+            <li>✦ Strong Academic Foundation</li>
+          </ul>
+          <p class="legal-pad__signoff">— Aditya (Interaction Designer)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 4: RESUME DOSSIER -->
+    <div class="panel panel--resume" data-panel="redbook">
+      <div class="binder">
+        <div class="binder__inner" id="binderInner">
+          <div class="binder__face binder__face--cover">
+            <div class="folder-tab-top"> ADITYA PANDYA</div>
+            <div class="dossier-header-bar">
+              <button class="panel__close inline-close" data-close>Close ✕</button>
+            </div>
+
+            <div class="folder-badge" id="binderOpenTrigger">
+              <span class="folder-badge__tag">CONFIDENTIAL</span>
+              <h2>Experiences</h2>
+              <p>Insights &amp; Project Narrative</p>
+              <div class="folder-stamp">TOP SECRET</div>
+              <p class="binder__hint">Click folder to open the report ➔</p>
+            </div>
+          </div>
+
+          <div class="binder__face binder__face--pages">
+            <button class="binder__back" id="binderBack" aria-label="Back to cover">‹ Close Folder</button>
+            <div class="resume-sheet">
+              <div class="resume-pages">
+                <div class="resume-page is-active" data-page="0">
+                  <div class="report-header">
+                    <span class="sheet-tag">SECTION 01</span>
+                    <span class="page-number">Page 1</span>
+                  </div>
+                  <h3>Academic Foundations</h3>
+                  <div class="report-summary">A strong design report starts with the foundation — where learning, research and structure shape each creative decision.</div>
+                  <div class="resume-card">
+                    <h4>Anant National University</h4>
+                    <p class="sub-location">Ahmedabad, India</p>
+                    <p class="desc">B.Des in Interaction Design — Minor in Graphic Design</p>
+                  </div>
+                  <ul class="resume-bullets">
+                    <li>Grounded in spatial interaction systems, motion-led interfaces, and product strategy.</li>
+                    <li>Led design thinking sessions, workshops, and collaborative problem solving.</li>
+                  </ul>
+                </div>
+
+                <div class="resume-page" data-page="1">
+                  <div class="report-header">
+                    <span class="sheet-tag">SECTION 02</span>
+                    <span class="page-number">Page 2</span>
+                  </div>
+                  <h3>Professional Experience</h3>
+                  <div class="report-summary">This section highlights practical work context, project ownership, and the types of systems I’ve built.</div>
+                  <div class="resume-card">
+                    <h4>Fluxusers Studioz</h4>
+                    <p class="sub-location">Co-founder & Interaction Lead</p>
+                    <p class="desc">Crafting tailored websites, web apps, and brand systems.</p>
+                  </div>
+                  <ul class="resume-bullets">
+                    <li>Owned end-to-end design from concept to launch,including motion systems and elements</li>
+                    <li>Built responsive interfaces with a focus on clarity, rhythm, and usability.</li>
+                  </ul>
+                </div>
+
+                <div class="resume-page" data-page="2">
+                  <div class="report-header">
+                    <span class="sheet-tag">SECTION 03</span>
+                    <span class="page-number">Page 3</span>
+                  </div>
+                  <h3>Design Thinking</h3>
+                  <div class="report-summary">The process is the core of every report: insight, hypothesis, prototype, test, iterate.</div>
+                  <div class="resume-grid">
+                    <div class="resume-card resume-card--highlight">
+                      <h4>Discovery</h4>
+                      <p>Researching context, users, and patterns to frame design opportunities.</p>
+                    </div>
+                    <div class="resume-card resume-card--highlight">
+                      <h4>Ideation</h4>
+                      <p>Exploring concepts with sketches, flows, and interactive prototypes.</p>
+                    </div>
+                    <div class="resume-card resume-card--highlight">
+                      <h4>Validation</h4>
+                      <p>Testing ideas, collecting feedback, and refining with clarity.</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="resume-nav">
+                <button class="resume-arrow-prev" id="resumePrev" aria-label="Previous page">◄ Prev</button>
+                <div class="resume-dots">
+                  <i class="is-active" data-dot="0"></i>
+                  <i data-dot="1"></i>
+                  <i data-dot="2"></i>
+                </div>
+                <button class="resume-arrow" id="resumeNext" aria-label="Next page">Next ➔</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 5: SMARTPHONE -->
+    <div class="panel panel--phone" data-panel="phone">
+      <button class="panel__close" data-close>Close ✕</button>
+      <div class="phone-frame">
+        <div class="phone-frame__dot"></div>
+        <div class="phone-screen">
+          <div class="phone-screen__header">
+            <div class="phone-screen__avatar">
+              <img src="Profile Pic.jpeg" alt="Aditya Pandya Profile Photo" class="phone-avatar-img" />
+            </div>
+            <h2>Aditya 👋</h2>
+            <p class="phone-screen__role">Interaction Designer</p>
+          </div>
+          
+          <div class="phone-screen__content">
+            <div class="phone-card">
+              <h4>About Me</h4>
+              <p>Hi, I’m Aditya Pandya.
+                I’m an Interaction Design student driven by curiosity, adaptability,
+                and a love for building intuitive digital experiences. Versatile by nature, 
+                I thrive on exploring new tools, experimenting with emerging mediums,
+                and designing engaging interactions that just click.
+              </p>
+            </div>
+
+            <div class="phone-card">
+              <h4>Quick Bio & Status</h4>
+              <p>📍 Ahmedabad, India<br>🎓 B.Des IxD Student<br>⚡ Open for Internships & Projects</p>
+            </div>
+          </div>
+        </div>
+        <div class="phone-frame__home"></div>
+      </div>
+    </div>
+
+    <!-- PANEL 6: COFFEE MUG -->
+    <div class="panel panel--contact" data-panel="mug">
+      <button class="panel__close" data-close>Close ✕</button>
+      <h2>Let's connect over coffee ☕</h2>
+      <div class="contact-grid">
+        <div class="contact-links">
+          <a href="mailto:adityapandya905@gmail.com" class="contact-link">
+            <span class="contact-link__label">Email</span>
+            <span class="contact-link__value">adityapandya905@gmail.com</span>
+          </a>
+          <a href="https://www.instagram.com/aditya_pandya06?igsh=dmMwZGRkaThyc2Zn&utm_source=qr" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link__label">Instagram</span>
+            <span class="contact-link__value">Aditya_pandya06</span>
+          </a>
+          <a href="https://www.linkedin.com/in/aditya-pandya-b1b9283b9?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener" class="contact-link">
+            <span class="contact-link__label">LinkedIn</span>
+            <span class="contact-link__value">Aditya Pandya</span>
+          </a>
+        </div>
+        <div class="contact-connect-card">
+          <h3>Get In Touch</h3>
+          <p class="contact-status">Currently open for summer internships, design roles, and freelance project collaborations!</p>
+          <button class="contact-connect" id="contactBtn">Say Hello 👋</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
